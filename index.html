@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Programming assignments</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>it will be a good day again
-    
+<body>
+
+  <header>
+    <h1>Web Programming</h1>
+    <p>Weekly assignments</p>
+  </header>
+
+  <main>
+    <section id="home">
+      <h2>Choose a week</h2>
+      <nav id="week-list" aria-label="Weeks"></nav>
+    </section>
+    <section id="week-view" hidden aria-live="polite">
+      <button id="back-btn" type="button">← All weeks</button>
+
+      <h2 id="week-title"></h2>
+      <p id="week-description"></p>
+
+      <ul id="exercise-list"></ul>
+
+      <nav id="week-nav" aria-label="Week navigation">
+        <button id="prev-btn" type="button">← Previous</button>
+        <button id="next-btn" type="button">Next →</button>
+      </nav>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; Gachon University, 2026, web programming lesson</p>
+  </footer>
+  <script src="js/weeks.js" defer></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>
