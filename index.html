@@ -2,42 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Programming assignments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Programming | Weekly Assignments</title>
+  <meta name="description" content="Weekly web programming assignments with live demos and exercises.">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📘</text></svg>">
+
+  <!-- Sets the theme before the page paints, so there is no flash -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') {
+        t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header>
-    <h1>Web Programming</h1>
-    <p>Weekly assignments</p>
+  <header class="site-header">
+    <div class="container bar">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>Your Name</span>
+      </a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Dark mode" aria-pressed="false">
+        <span class="icon-sun" aria-hidden="true">☀️</span>
+        <span class="icon-moon" aria-hidden="true">🌙</span>
+      </button>
+    </div>
   </header>
 
-  <main>
-    <section id="home">
-      <h2>Choose a week</h2>
-      <nav id="week-list" aria-label="Weeks"></nav>
+  <main id="main" class="container" tabindex="-1">
+
+    <!-- Layer 1: week buttons -->
+    <section id="home" aria-labelledby="home-title">
+      <div class="hero">
+        <p class="eyebrow">University course portfolio</p>
+        <h1 id="home-title">Web Programming</h1>
+        <p class="lead">Choose a week to open its tasks and live exercises.</p>
+        <p id="stats" class="stats"></p>
+      </div>
+
+      <div id="search-wrap" class="search" hidden>
+        <label for="search" class="sr-only">Search weeks</label>
+        <input id="search" type="search" placeholder="Search weeks or exercises…" autocomplete="off">
+      </div>
+
+      <nav id="week-list" class="week-grid" aria-label="Weeks"></nav>
+      <p id="no-results" class="empty" hidden></p>
     </section>
-    <section id="week-view" hidden aria-live="polite">
-      <button id="back-btn" type="button">← All weeks</button>
 
-      <h2 id="week-title"></h2>
-      <p id="week-description"></p>
+    <!-- Layer 2: selected week -->
+    <section id="week-view" class="week-view" aria-labelledby="week-title" hidden>
+      <a id="back-btn" class="back" href="#">← All weeks</a>
 
-      <ul id="exercise-list"></ul>
+      <header class="week-head">
+        <p id="week-position" class="eyebrow"></p>
+        <h2 id="week-title" tabindex="-1"></h2>
+        <p id="week-description" class="lead"></p>
+      </header>
 
-      <nav id="week-nav" aria-label="Week navigation">
-        <button id="prev-btn" type="button">← Previous</button>
-        <button id="next-btn" type="button">Next →</button>
+      <ul id="exercise-list" class="exercise-list"></ul>
+      <p id="exercise-empty" class="empty" hidden>No exercises yet. Check back soon.</p>
+
+      <nav class="week-nav" aria-label="Week navigation">
+        <button id="prev-btn" class="nav-btn" type="button">
+          <span class="nav-dir">← Previous</span>
+          <span class="nav-name"></span>
+        </button>
+        <button id="next-btn" class="nav-btn next" type="button">
+          <span class="nav-dir">Next →</span>
+          <span class="nav-name"></span>
+        </button>
       </nav>
     </section>
 
+    <noscript><p class="empty">This site needs JavaScript to show the weeks.</p></noscript>
   </main>
 
-  <footer>
-    <p>&copy; Gachon University, 2026, web programming lesson</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Your Name</p>
+    </div>
   </footer>
-  <script src="js/weeks.js" defer></script>
+
+  <!-- Order matters: data first, then logic -->
   <script src="js/app.js" defer></script>
 </body>
 </html>
